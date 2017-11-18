@@ -9,7 +9,7 @@ template: `<p>
     </p>
   `,
 */
-  styleUrls: ['./hello-world.component.css']
+  styleUrls: ['./hello-world.component.scss']
 })
 export class HelloWorldComponent implements OnInit {
 
