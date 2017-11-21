@@ -1,0 +1,12 @@
+<agency-logo [logo]='agency.logoUrl'></agency-logo>
+<div class="content">
+  <div class="header"> {{ agency.name }}</div>
+  <div class="meta">
+    <div class="agency-id">Agency ID #{{ agency.id }}</div>
+  </div>
+  <div class="description">
+    <agency-category [agency]="agency" ></agency-category>
+  </div>
+</div>
+
+<agency-rating [rating]="agency.rating"></agency-rating>

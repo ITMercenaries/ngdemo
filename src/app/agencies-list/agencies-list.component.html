@@ -1,0 +1,8 @@
+<div class="ui items">
+  <agency-row
+    *ngFor="let myAgency of agencyList"
+    [agency] = "myAgency"
+    (click) = 'clicked(myAgency)'
+    [class.selected] = "isSelected(myAgency)">
+  </agency-row>
+</div>
