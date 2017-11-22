@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
@@ -12,7 +14,7 @@ import { AgencyLogoComponent } from './agency-row/agency-logo/agency-logo.compon
 import { AgencyRatingComponent } from './agency-row/agency-rating/agency-rating.component';
 import { AgencyRowComponent } from './agency-row/agency-row.component';
 import { AgenciesListComponent } from './agencies-list/agencies-list.component';
-import { AgencyCategoryComponent } from './agency-category/agency-category.component';
+import { AgencyCategoryComponent } from './agency-row/agency-category/agency-category.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { AgencyCategoryComponent } from './agency-category/agency-category.compo
     AgencyCategoryComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

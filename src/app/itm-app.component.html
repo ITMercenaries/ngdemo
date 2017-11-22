@@ -1,8 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form raised">
+  <div class="field">
+    <label for="agencyid">Agency ID:</label>
+    <input type="text" id="agencyid" placeholder="AGENCY ID" name="agencyid" ngModel>
+  </div>
+  <button type="submit" class="ui button">Submit</button>
+</form>
+
 <div class="itm-app">
   <app-agencies-list [agencyList]="agencies"
                  (onAgencySelected)="agencyWasSelected($event)">
   </app-agencies-list>
 </div>
 
+<h2 class="ui header">FormBuilder</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form">
+  <div class="field" [class.error]="!myForm.valid && myForm.touched">
+    <label for="agencyid">Agency ID:</label>
+    <input type="text" id="agencyid" placeholder="AGENCY ID" [formControl]="myForm.controls['agencyid']">
+  </div>
+  <div *ngIf="!myForm.controls['agencyid'].valid" class="ui error">Agency ID is invalid</div>
+  <div *ngIf="myForm.controls.agencyid.hasError('required')" class="ui error">Agency ID is required!</div>
+  <div *ngIf="myForm.controls.agencyid.hasError('invalidAgencyID')" class="ui error">Agency ID not start with <span>AGE</span>!</div>
+  <button type="submit" class="ui button">Submit</button>
+  
+</form>
 
+<div class="ui info message">
+ The Agency ID is: {{ myForm.controls['agencyid'].value }}
+</div>

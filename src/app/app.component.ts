@@ -1,4 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Agency } from './model/agency.model';
 
 /*
@@ -22,8 +23,9 @@ export class AppComponent {
 })
 export class AppComponent {
   agencies: Agency[];
+  myForm: FormGroup;
 
-  constructor() {
+  constructor(fb: FormBuilder) {
     this.agencies = [
       new Agency('AGENT001',
                 'Procom',
@@ -44,6 +46,10 @@ export class AppComponent {
                 ['IT', 'Job Agency'],
                 1)
     ];
+
+    this.myForm = fb.group({
+      'agencyid': ['AGENCY006', Validators.compose([Validators.required, this.agencyIdValidator]) ]
+    });
   }
   // addAgency(title: HTMLInputElement, link: HTMLInputElement ): boolean {
   //   console.log(`Adding article title ${title.value} and link: ${link.value}`);
@@ -51,5 +57,15 @@ export class AppComponent {
   // }
   agencyWasSelected(agency: Agency): void {
     console.log('Agency clicked: ', agency);
+  }
+
+  onSubmit( form: string): void {
+    console.log('You submitted value:', form);
+  }
+
+  agencyIdValidator(ctl: FormControl): { [s: string]: boolean } {
+    if ( !ctl.value.match(/^AGE/)) {
+      return { invalidAgencyID: true};
+    }
   }
 }

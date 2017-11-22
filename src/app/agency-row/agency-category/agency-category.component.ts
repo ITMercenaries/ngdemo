@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Agency } from '../model/agency.model';
+import { Agency } from '../../model/agency.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
