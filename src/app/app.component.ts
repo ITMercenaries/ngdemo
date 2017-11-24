@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Agency } from './model/agency.model';
 import { UserService } from './service/user.service';
 import { DataService } from './service/data.service';
+import { HttpClient } from '@angular/common/http';
 
 /*
 @Component({
@@ -26,6 +27,8 @@ export class AppComponent {
 export class AppComponent {
   agencies: Agency[];
   myForm: FormGroup;
+  loading: boolean;
+  data: Object;
 
   userName: string;
  // @ViewChild( MatMenuTrigger ) trigger: MatMenuTrigger;
@@ -33,7 +36,8 @@ export class AppComponent {
   constructor(fb: FormBuilder,
               private userService: UserService,
               @Inject('API_URL') private apiURL: string,
-              public dataService: DataService) {
+              public dataService: DataService,
+              public http: HttpClient) {
 
     this.agencies = [
       new Agency('AGENT001',
@@ -84,10 +88,14 @@ export class AppComponent {
 
   signIn(): void {
     this.userService.setUser({name: 'Jane Doe'});
-
+    this.loading = true ;
     this.userName = this.userService.getUser().name;
     console.log('User name is: ', this.userName );
     console.log('API url is: ', this.apiURL );
-    this.dataService.getData();
+
+    this.http.get( 'https://reqres.in/api/users').subscribe( res => {
+      this.data = res;
+      this.loading = false;
+    });
   }
 }

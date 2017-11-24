@@ -8,10 +8,11 @@ export class DataService {
         this.url = 'https://reqres.in/api/users';
     }
 
-    getData() {
+    getData(): void {
         this.http.get( this.url, {responseType: 'text'} ).subscribe( res => {
         //                       { observe: 'response' } --> to see whole response with headers.
             console.log('Result: ', res);
+            return res;
         });
     }
 }
