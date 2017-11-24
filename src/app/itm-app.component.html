@@ -1,3 +1,11 @@
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item> Settings </button>
+  <button mat-menu-item> Help </button>
+</mat-menu>
+<button mat-icon-button [matMenuTriggerFor]="appMenu">
+   <mat-icon>more_vert</mat-icon>
+</button>
+
 <!--The content below is only a placeholder and can be replaced.-->
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form raised">
   <div class="field">
@@ -28,4 +36,11 @@
 
 <div class="ui info message">
  The Agency ID is: {{ myForm.controls['agencyid'].value }}
+</div>
+
+<div>
+  <p *ngIf="userName" class="welcome">
+    Welcome: {{ userName }}!
+  </p>
+  <button (click)="signIn()" class="ui button">Sign in</button>
 </div>

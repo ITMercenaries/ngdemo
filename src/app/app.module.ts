@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
@@ -15,6 +16,8 @@ import { AgencyRatingComponent } from './agency-row/agency-rating/agency-rating.
 import { AgencyRowComponent } from './agency-row/agency-row.component';
 import { AgenciesListComponent } from './agencies-list/agencies-list.component';
 import { AgencyCategoryComponent } from './agency-row/agency-category/agency-category.component';
+
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,16 @@ import { AgencyCategoryComponent } from './agency-row/agency-category/agency-cat
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: UserService, useClass: UserService },
+    { provide: 'API_URL', useValue: 'http://myapi.com/v1/api' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

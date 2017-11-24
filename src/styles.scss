@@ -2,6 +2,9 @@
 @import './scss/_variables.scss';
 @import './scss/_mixins.scss';
 @import './app/vendor/semantic.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.material-icons.orange600 { color: rgb(54, 0, 251); }
 
 .ui.menu .item img.logo {
     margin-right: 1.5em;

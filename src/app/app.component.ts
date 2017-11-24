@@ -1,6 +1,7 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ReflectiveInjector, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Agency } from './model/agency.model';
+import { UserService } from './service/user.service';
 
 /*
 @Component({
@@ -25,7 +26,13 @@ export class AppComponent {
   agencies: Agency[];
   myForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  userName: string;
+ // @ViewChild( MatMenuTrigger ) trigger: MatMenuTrigger;
+
+  constructor(fb: FormBuilder,
+              private userService: UserService,
+              @Inject('API_URL') private apiURL: string) {
+
     this.agencies = [
       new Agency('AGENT001',
                 'Procom',
@@ -50,6 +57,10 @@ export class AppComponent {
     this.myForm = fb.group({
       'agencyid': ['AGENCY006', Validators.compose([Validators.required, this.agencyIdValidator]) ]
     });
+
+    // Injection
+    // const injector: any = ReflectiveInjector.resolveAndCreate([UserService]);
+    // this.userService = injector.get(UserService);
   }
   // addAgency(title: HTMLInputElement, link: HTMLInputElement ): boolean {
   //   console.log(`Adding article title ${title.value} and link: ${link.value}`);
@@ -67,5 +78,13 @@ export class AppComponent {
     if ( !ctl.value.match(/^AGE/)) {
       return { invalidAgencyID: true};
     }
+  }
+
+  signIn(): void {
+    this.userService.setUser({name: 'Jane Doe'});
+
+    this.userName = this.userService.getUser().name;
+    console.log('User name is: ', this.userName );
+    console.log('API url is: ', this.apiURL );
   }
 }
