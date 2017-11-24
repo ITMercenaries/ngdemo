@@ -2,7 +2,8 @@
 @import './scss/_variables.scss';
 @import './scss/_mixins.scss';
 @import './app/vendor/semantic.min.css';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 .material-icons.orange600 { color: rgb(54, 0, 251); }
 

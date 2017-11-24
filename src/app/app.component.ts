@@ -2,6 +2,7 @@ import { Component, EventEmitter, ReflectiveInjector, ViewChild, Inject } from '
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Agency } from './model/agency.model';
 import { UserService } from './service/user.service';
+import { DataService } from './service/data.service';
 
 /*
 @Component({
@@ -31,7 +32,8 @@ export class AppComponent {
 
   constructor(fb: FormBuilder,
               private userService: UserService,
-              @Inject('API_URL') private apiURL: string) {
+              @Inject('API_URL') private apiURL: string,
+              public dataService: DataService) {
 
     this.agencies = [
       new Agency('AGENT001',
@@ -86,5 +88,6 @@ export class AppComponent {
     this.userName = this.userService.getUser().name;
     console.log('User name is: ', this.userName );
     console.log('API url is: ', this.apiURL );
+    this.dataService.getData();
   }
 }

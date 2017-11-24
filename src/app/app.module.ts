@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule} from '@angular/material';
 
@@ -18,6 +19,7 @@ import { AgenciesListComponent } from './agencies-list/agencies-list.component';
 import { AgencyCategoryComponent } from './agency-row/agency-category/agency-category.component';
 
 import { UserService } from './service/user.service';
+import { DataService } from './service/data.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { UserService } from './service/user.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -46,6 +49,7 @@ import { UserService } from './service/user.service';
   ],
   providers: [
     { provide: UserService, useClass: UserService },
+    { provide: DataService, useClass: DataService },
     { provide: 'API_URL', useValue: 'http://myapi.com/v1/api' }
   ],
   bootstrap: [AppComponent]
